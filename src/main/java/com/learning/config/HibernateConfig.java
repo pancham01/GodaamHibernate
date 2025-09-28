@@ -17,11 +17,11 @@ public class HibernateConfig {
 		ps.put(Environment.JAKARTA_JDBC_URL, "jdbc:mysql://localhost:3306/student");
 		ps.put(Environment.JAKARTA_JDBC_USER, "root");
 		ps.put(Environment.JAKARTA_JDBC_PASSWORD, "root");
-		ps.put(Environment.HBM2DDL_AUTO, "update");
+		ps.put(Environment.HBM2DDL_AUTO, "create");
 		ps.put(Environment.SHOW_SQL, true);
 		ps.put(Environment.FORMAT_SQL, true);
 		return new MetadataSources(new StandardServiceRegistryBuilder().applySettings(ps).build())
-				.addAnnotatedClass(com.learning.entity.Employee.class).buildMetadata().buildSessionFactory();
+				.addAnnotatedClasses(com.learning.entity.Employee.class,com.learning.entity.Address.class).buildMetadata().buildSessionFactory();
 	}
 
 }

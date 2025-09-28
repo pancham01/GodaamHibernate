@@ -4,9 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 
-@NamedQuery(name = "findEmps" , query = "from Employee where id > 2")
 @Entity
 public class Employee {
 
@@ -16,17 +15,36 @@ public class Employee {
 	private String name;
 	private String gender;
 	private int salary;
+	
+	@OneToOne
+	Address address;
 
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee( String name, String gender, int salary) {
+	
+
+	public Employee( String name, String gender, int salary, Address address) {
+		super();
 		this.name = name;
 		this.gender = gender;
 		this.salary = salary;
+		this.address = address;
 	}
+
+
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -60,9 +78,12 @@ public class Employee {
 		this.salary = salary;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + "]";
 	}
 
+	
 }
